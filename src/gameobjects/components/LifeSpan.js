@@ -147,6 +147,6 @@ Phaser.Component.LifeSpan.prototype = {
      * @return {PIXI.DisplayObject} This instance.
      */
     faint: function () {
-        this.kill();
+        return this.kill();
     }
 };

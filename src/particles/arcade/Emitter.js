@@ -457,7 +457,16 @@ Phaser.Particles.Arcade.Emitter.prototype.kill = function () {
     this.exists = false;
 
     return this;
+};
 
+/**
+* Call this function to turn off all the particles and the emitter.
+*
+* @method Phaser.Particles.Arcade.Emitter#faint
+* @return {Phaser.Particles.Arcade.Emitter} This Emitter instance.
+*/
+Phaser.Particles.Arcade.Emitter.prototype.faint = function () {
+    return this.kill();
 };
 
 /**
