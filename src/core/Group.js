@@ -2317,7 +2317,7 @@ Phaser.Group.prototype.getFirstDead = function (createIfNull, x, y, key, frame) 
 * @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
 * @return {DisplayObject} The first fainted child, or `null` if none found and `createIfNull` was false.
 */
-Phaser.Group.prototype.getFirstfainted = function (createIfNull, x, y, key, frame) {
+Phaser.Group.prototype.getFirstFainted = function (createIfNull, x, y, key, frame) {
 
     if (createIfNull === undefined) { createIfNull = false; }
 
