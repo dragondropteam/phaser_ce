@@ -16,7 +16,7 @@ build:
   script: grunt
   artifacts:
     paths:
-    - dist
+    - dist/phaser.min.js
   tags:
   - grunt
   
