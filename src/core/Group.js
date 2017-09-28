@@ -1514,6 +1514,16 @@ Phaser.Group.prototype.killAll = function () {
 };
 
 /**
+ * Faints all children having exists=true.
+ *
+ * @method Phaser.Group#faintAll
+ */
+Phaser.Group.prototype.faintAll = function () {
+    this.callAllExists('faint', true);
+
+};
+
+/**
  * Revives all children having exists=false.
  *
  * @method Phaser.Group#reviveAll
