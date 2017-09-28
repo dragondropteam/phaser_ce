@@ -189,6 +189,24 @@ Phaser.TilemapParser = {
     * @return {object} A object literal containing the objectsCollection and collisionCollection
     */
     parseObjectGroup: function(objectGroup, objectsCollection, collisionCollection, nameKey, relativePosition){
+
+        function slice (obj, fields) {
+
+            var sliced = {};
+
+            for (var k in fields)
+            {
+                var key = fields[k];
+
+                if (typeof obj[key] !== 'undefined')
+                {
+                    sliced[key] = obj[key];
+                }
+            }
+
+            return sliced;
+        }
+
         var nameKey = nameKey || objectGroup.name;
         var relativePosition = relativePosition || {x: 0, y: 0};
 
@@ -265,8 +283,8 @@ Phaser.TilemapParser = {
             {
                 var object = slice(objectGroup.objects[v], ['name', 'type', 'x', 'y', 'visible', 'rotation', 'properties']);
 
-                object.x += relativePosition.x
-                object.y += relativePosition.y
+                object.x += relativePosition.x;
+                object.y += relativePosition.y;
 
                 //  Parse the polygon into an array
                 object.polygon = [];
@@ -301,23 +319,6 @@ Phaser.TilemapParser = {
                 collisionCollection[nameKey].push(object);
                 objectsCollection[nameKey].push(object);
             }
-        }
-
-        function slice (obj, fields) {
-
-            var sliced = {};
-
-            for (var k in fields)
-            {
-                var key = fields[k];
-
-                if (typeof obj[key] !== 'undefined')
-                {
-                    sliced[key] = obj[key];
-                }
-            }
-
-            return sliced;
         }
 
         return {
@@ -631,12 +632,12 @@ Phaser.TilemapParser = {
             // build a temporary object for objectgroups found in the tileset's tiles
             for (var ti in set.tiles)
             {
-                var objectGroup = set.tiles[ti].objectgroup
+                var objectGroup = set.tiles[ti].objectgroup;
                 if (!objectGroup)
                 {
                     continue;
                 }
-                tilesetGroupObjects[parseInt(ti) + set.firstgid] = objectGroup;
+                tilesetGroupObjects[parseInt(ti, 10) + set.firstgid] = objectGroup;
             }
 
             //  We've got a new Tileset, so set the lastgid into the previous one
