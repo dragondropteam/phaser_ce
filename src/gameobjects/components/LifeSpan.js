@@ -5,6 +5,12 @@
 */
 
 /**
+ * @author  Luke Powell <luke.poewll@digipen.edu>
+ * Added a faint method to have a less violent name for the action just calls the kill method internally
+ * All changes copyright DigiPen Institute of Technology
+ */
+
+/**
 * LifeSpan Component Features.
 *
 * @class
@@ -123,6 +129,24 @@ Phaser.Component.LifeSpan.prototype = {
 
         return this;
 
-    }
+    },
 
+    /**
+     * Faints a Game Object. A fainted Game Object has its `alive`, `exists` and `visible` properties all set to false.
+     *
+     * It will dispatch the `onKilled` event. You can listen to `events.onKilled` for the signal.
+     *
+     * Note that fainting a Game Object is a way for you to quickly recycle it in an object pool,
+     * it doesn't destroy the object or free it up from memory.
+     *
+     * If you don't need this Game Object any more you should call `destroy` instead.
+     *
+     *
+     * This modification made and copyright DigiPen Institute of Technology
+     * @method
+     * @return {PIXI.DisplayObject} This instance.
+     */
+    faint: function () {
+        this.kill();
+    }
 };
