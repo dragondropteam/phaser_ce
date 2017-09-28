@@ -2298,6 +2298,36 @@ Phaser.Group.prototype.getFirstDead = function (createIfNull, x, y, key, frame) 
 };
 
 /**
+* Get the first child that is fainted (`child.alive === false`).
+*
+* This is handy for checking if everything has been wiped out and adding to the pool as needed.
+*
+* You can use the optional argument `createIfNull` to create a new Game Object if no fainted ones were found in this Group.
+*
+* It works by calling `Group.create` passing it the parameters given to this method, and returning the new child.
+*
+* If a child *was* found , `createIfNull` is `false` and you provided the additional arguments then the child
+* will be reset and/or have a new texture loaded on it. This is handled by `Group.resetChild`.
+*
+* @method Phaser.Group#getFirstfainted
+* @param {boolean} [createIfNull=false] - If `true` and no fainted children are found a new one is created.
+* @param {number} [x] - The x coordinate to reset the child to. The value is in relation to the group.x point.
+* @param {number} [y] - The y coordinate to reset the child to. The value is in relation to the group.y point.
+* @param {string|Phaser.RenderTexture|Phaser.BitmapData|Phaser.Video|PIXI.Texture} [key] - This is the image or texture used by the Sprite during rendering. It can be a string which is a reference to the Cache Image entry, or an instance of a RenderTexture, BitmapData, Video or PIXI.Texture.
+* @param {string|number} [frame] - If this Sprite is using part of a sprite sheet or texture atlas you can specify the exact frame to use by giving a string or numeric index.
+* @return {DisplayObject} The first fainted child, or `null` if none found and `createIfNull` was false.
+*/
+Phaser.Group.prototype.getFirstfainted = function (createIfNull, x, y, key, frame) {
+
+    if (createIfNull === undefined) { createIfNull = false; }
+
+    var child = this.getFirst('alive', false);
+
+    return (child === null && createIfNull) ? this.create(x, y, key, frame) : this.resetChild(child, x, y, key, frame);
+
+};
+
+/**
 * Takes a child and if the `x` and `y` arguments are given it calls `child.reset(x, y)` on it.
 *
 * If the `key` and optionally the `frame` arguments are given, it calls `child.loadTexture(key, frame)` on it.
