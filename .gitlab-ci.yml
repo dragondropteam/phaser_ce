@@ -1,0 +1,20 @@
+stages:
+ - test
+ - build
+ 
+test:
+  stage: test
+  script: npm test
+  tags:
+  - grunt
+  
+build:
+  stage: build
+  script: grunt
+  artifacts:
+    paths:
+    - dist
+  tags:
+  - grunt
+  
+ 
