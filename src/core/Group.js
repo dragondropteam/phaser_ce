@@ -2497,6 +2497,16 @@ Phaser.Group.prototype.countDead = function () {
 };
 
 /**
+* Get the number of fainted children in this group.
+*
+* @method Phaser.Group#countFainted
+* @return {integer} The number of children flagged as fainted.
+*/
+Phaser.Group.prototype.countFainted = function () {
+    return this.count('alive', false);
+};
+
+/**
 * Returns a random child from the group.
 *
 * @method Phaser.Group#getRandom
