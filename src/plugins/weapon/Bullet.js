@@ -7,7 +7,7 @@
 /**
 * Create a new `Bullet` object. Bullets are used by the `Phaser.Weapon` class, and are normal Sprites,
 * with a few extra properties in the data object to handle Weapon specific features.
-* 
+*
 * @class Phaser.Bullet
 * @constructor
 * @extends Phaser.Sprite
@@ -58,6 +58,17 @@ Phaser.Bullet.prototype.kill = function () {
 };
 
 /**
+* Faints the Bullet, freeing it up for re-use by the Weapon bullet pool.
+* Also dispatches the `Weapon.onKill` signal.
+*
+* @method Phaser.Bullet#faint
+* @memberof Phaser.Bullet
+*/
+Phaser.Bullet.prototype.faint = function () {
+    return this.kill();
+};
+
+/**
 * Updates the Bullet, killing as required.
 *
 * @method Phaser.Bullet#kill
@@ -87,7 +98,7 @@ Phaser.Bullet.prototype.update = function () {
             }
         }
     }
-    
+
     if (this.data.rotateToVelocity)
     {
         this.rotation = Math.atan2(this.body.velocity.y, this.body.velocity.x);

@@ -41,7 +41,7 @@ Phaser.Component.InWorld.preUpdate = function () {
             {
                 this.renderable = false;
 
-                if (this.outOfCameraBoundsKill)
+                if (this.outOfCameraBoundsKill || this.outOfCameraBoundsFaint)
                 {
                     this.kill();
                     return false;
@@ -63,7 +63,7 @@ Phaser.Component.InWorld.preUpdate = function () {
                 this._outOfBoundsFired = true;
                 this.events.onOutOfBounds$dispatch(this);
 
-                if (this.outOfBoundsKill)
+                if (this.outOfBoundsKill || this.outOfBoundsFaint)
                 {
                     this.kill();
                     return false;
@@ -79,19 +79,19 @@ Phaser.Component.InWorld.preUpdate = function () {
 Phaser.Component.InWorld.prototype = {
 
     /**
-    * If this is set to `true` the Game Object checks if it is within the World bounds each frame. 
-    * 
+    * If this is set to `true` the Game Object checks if it is within the World bounds each frame.
+    *
     * When it is no longer intersecting the world bounds it dispatches the `onOutOfBounds` event.
-    * 
+    *
     * If it was *previously* out of bounds but is now intersecting the world bounds again it dispatches the `onEnterBounds` event.
-    * 
+    *
     * It also optionally kills the Game Object if `outOfBoundsKill` is `true`.
-    * 
+    *
     * When `checkWorldBounds` is enabled it forces the Game Object to calculate its full bounds every frame.
-    * 
+    *
     * This is a relatively expensive operation, especially if enabled on hundreds of Game Objects. So enable it only if you know it's required,
     * or you have tested performance and find it acceptable.
-    * 
+    *
     * @property {boolean} checkWorldBounds
     * @default
     */
@@ -99,7 +99,7 @@ Phaser.Component.InWorld.prototype = {
 
     /**
     * If this and the `checkWorldBounds` property are both set to `true` then the `kill` method is called as soon as `inWorld` returns false.
-    * 
+    *
     * @property {boolean} outOfBoundsKill
     * @default
     */
@@ -113,6 +113,23 @@ Phaser.Component.InWorld.prototype = {
      * @default
      */
     outOfCameraBoundsKill: false,
+
+    /**
+    * If this and the `checkWorldBounds` property are both set to `true` then the `faint` method is called as soon as `inWorld` returns false.
+    *
+    * @property {boolean} outOfBoundsKill
+    * @default
+    */
+    outOfBoundsFaint: false,
+
+    /**
+     * If this and the `autoCull` property are both set to `true`, then the `kill` method
+     * is called as soon as the Game Object leaves the camera bounds.
+     *
+     * @property {boolean} outOfCameraBoundsKill
+     * @default
+     */
+    outOfCameraBoundsFaint: false,
 
     /**
     * @property {boolean} _outOfBoundsFired - Internal state var.
