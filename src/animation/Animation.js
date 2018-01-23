@@ -74,6 +74,11 @@ Phaser.Animation = function (game, parent, name, frameData, frames, frameRate, l
     this.killOnComplete = false;
 
     /**
+     * @property {boolean} faintOnComplete - Should the parent of this Animation be fainted when the animation completes?
+     */
+    Object.defineProperty(this, 'faintOnComplete', {set: function(x){this.killOnComplete = x;}, get: function(){return this.killOnComplete}});
+
+    /**
     * @property {boolean} isFinished - The finished state of the Animation. Set to true once playback completes, false during playback.
     * @default
     */
@@ -166,7 +171,7 @@ Phaser.Animation.prototype = {
 
     /**
     * Plays this animation.
-    * 
+    *
     * If you need to jump to a specific frame of this animation, then call `play` and immediately after it,
     * set the frame you require (i.e. `animation.play(); animation.frame = 4`).
     *

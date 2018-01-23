@@ -2594,7 +2594,7 @@ Phaser.Group.prototype.getRandomExists = function (startIndex, endIndex) {
 * @param {any} [value] - If property is set then Child.property must strictly equal this value to be included in the results.
 * @param {integer} [startIndex=0] - The first child index to start the search from.
 * @param {integer} [endIndex] - The last child index to search up until.
-* @return {array} - An array containing all, some, or none of the Children of this Group.
+* @return {Array} - An array containing all, some, or none of the Children of this Group.
 */
 Phaser.Group.prototype.getAll = function (property, value, startIndex, endIndex) {
 
