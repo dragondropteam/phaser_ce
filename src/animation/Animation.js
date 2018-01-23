@@ -76,7 +76,7 @@ Phaser.Animation = function (game, parent, name, frameData, frames, frameRate, l
     /**
      * @property {boolean} faintOnComplete - Should the parent of this Animation be fainted when the animation completes?
      */
-    Object.defineProperty(this, 'faintOnComplete', {set: function(x){this.killOnComplete = x;}, get: function(){return this.killOnComplete}});
+    Object.defineProperty(this, 'faintOnComplete', {set: function(x){this.killOnComplete = x;}, get: function(){return this.killOnComplete;}});
 
     /**
     * @property {boolean} isFinished - The finished state of the Animation. Set to true once playback completes, false during playback.
